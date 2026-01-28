@@ -6,8 +6,11 @@ import static utils.Constants.*;
 import static utils.Constants.Directions.*;
 
 import java.awt.*;
+import java.awt.font.TextAttribute;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 import audio.AudioPlayer;
 import gamestates.Playing;
@@ -308,8 +311,12 @@ public class Player extends Entity {
 
     // Draws the health bar of the bird in the upper left corner.
     public void updateScore(int score,Graphics g ) {
+        // Update to change font to Comic Sans MS and underline the test
+        Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
+        fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+
         g.setColor(Color.white);
-        g.setFont(new Font("Arial", Font.BOLD, 30));
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 30).deriveFont(fontAttributes));
         g.drawString("Score: " + score, 50, 50);
     }
 

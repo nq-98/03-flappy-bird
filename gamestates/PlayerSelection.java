@@ -8,7 +8,10 @@ import utils.LoadSave;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 import static utils.Constants.ANI_SPEED;
 import static utils.Constants.PlayerConstants.IDLE;
@@ -63,6 +66,10 @@ public class PlayerSelection extends State implements Statemethods {
 
     @Override
     public void draw(Graphics g) {
+        // Update to change font to Comic Sans MS and underline the test
+        Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
+        fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+
         g.drawImage(menuBackground, 0, 0, FlappyGame.GAME_WIDTH, FlappyGame.GAME_HEIGHT, null);
         g.drawImage(backgroundImg, menuX, menuY, menuWidth, menuHeight, null);
 
@@ -72,7 +79,7 @@ public class PlayerSelection extends State implements Statemethods {
         drawChar(g, playerIndex, menuX + (menuWidth / 2) + 90, menuY + menuHeight / 2);
 
         g.setColor(Color.white);
-        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.setFont(new Font("Comic Sans MS", Font.BOLD, 20).deriveFont(fontAttributes));
         g.drawString("To Choose Press <-  arrows  ->",menuX + (menuWidth / 2) -150, (menuY + menuHeight / 2) + 100);
 
         //Left
